@@ -78,3 +78,21 @@
 .none{
     display: none;
 }
+
+.input{
+    margin: 1em;
+    padding: 0.5em 1em;
+    border: 0.2em solid #666;
+    border-radius: 5px;
+}
+
+.inputBtn{
+    padding: 0.5em 1.5em;
+    background: #1a73e8;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    color: aliceblue;
+    cursor: pointer;
+    border-radius: 5px;
+}
