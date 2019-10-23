@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<form id="webcamPageForm" method="POST" enctype="multipart/form-data" action="/tryonViewWC/{{frame.slug}}/">
+    {% csrf_token %}
+    
+    <video id="vid" width="640" height="480" autoplay></video><!-- shows my video stream playing -->
+    <input type="file" id="imagewc" name="imagewc" onclick="snapshot();" accept="image/*" capture> <!-- opens my hard drive and expects input from hard drive-->
+    <canvas id="canvas" name="canvas" width="640" height="480" style="border:1px solid #d3d3d3;"></canvas><br> <!--captured image displayed here-->
+    <input type="submit" id="SubmitWebCam" name="SubmitWebCam"  class="myButton" value= "Done" style="display:none"><br><!-- on submit should send user-captured snapshot to views.py-->
+    
+    <script type="text/javascript">
+    
+        var video = document.querySelector("#vid");
+        var canvas = document.querySelector('#canvas');
+        var ctx = canvas.getContext('2d');
+        var localMediaStream = null;
+    
+        var onCameraFail = function (e) {
+            console.log('Camera did not work.', e);
+            };
+    
+        function snapshot() {  
+    
+            if (localMediaStream) {
+                ctx.drawImage(video, 0, 0);   // This draws the captured image on the canvas
+            }
+             document.getElementById('SubmitWebCam').style.display="block";
+        }
+    
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    
+        window.URL = window.URL || window.webkitURL;
+    
+        navigator.getUserMedia({video:true}, function (stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+            localMediaStream = stream;
+        }, onCameraFail);
+    
+    </script>
+    </form>
+
+{% endblock %}

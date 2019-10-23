@@ -4,6 +4,10 @@
 {% block header %}
 
     <link href="{% static 'css/cam.css' %}" rel="stylesheet" />
+    <link rel="icon" href="https://img.icons8.com/material/4ac144/256/user-male.png" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
 
 {% endblock %}
 
@@ -16,6 +20,14 @@
 <Br>
     <center>
         <button id="capture" class="captureBtn">Capture</button>
+        <Br><br>    
+        <form method="POST" action="{% url 'captureImage' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="image" value="" id="file" />
+            <!-- <input type="file" id="file" name="input" value="" class="input"/> -->
+            <input type="submit" value="UPLOAD" class="inputBtn" />
+        </form>
+        <!-- <input type="file" /> -->
     </center>
 <Br>
     <div class="overlay none" id="overlay">
@@ -27,7 +39,8 @@
             <canvas id="canvas" width=320 height=240></canvas>
         </div>
         <Br><br>
-        <button class="captureBtn" id="saveCapturedImage">Save</button>
+        <button class="captureBtn" id="saveCapturedImage">Submit</button>
+
     </div>
 
 
@@ -37,5 +50,39 @@
 {% block footer %}
 
     <script src="{% static 'js/cam.js' %}"></script>
+
+    <script>
+
+        document.getElementById("saveCapturedImage").addEventListener(
+            "click",
+            ()=>{
+                var data = document.getElementById("canvas").toDataURL("image/jpeg");
+                document.getElementById("file").value = data;
+            }
+        );
+
+        // var canvas1 = document.getElementById("canvas");
+
+        // document.getElementById("saveCapturedImage").addEventListener("click",
+        //     () => {
+        //         var canvasData = canvas1.toDataURL("image/png");
+        //         var file = dataURItoBlob(canvasData);
+        //         // document.getElementById("file").value = canvasData;
+        //         document.getElementById("test").innerHTML = file;
+        //     //     $.ajax({
+        //     //     url:"/captureImage",
+        //     //     data:{
+        //     //         "image":canvasData
+        //     //     },
+        //     //     dataType: 'json',
+        //     //     success: function (data) {
+        //     //         swal("Awesome!", "Your Image has been uploaded", "success");
+                    
+        //     //     }
+        //     // });
+        //     }
+        // )
+
+    </script>
 
 {% endblock %}
