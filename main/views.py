@@ -13,11 +13,6 @@ def home(request):
     }
     return render(request,'index.html',context)
 
-def file1(request):
-    context = {
-        "title":"CaptureCam | Home",
-    }
-    return render(request,'file.html',context)
 
 def captureImage(request):
     dict = {}
@@ -28,5 +23,5 @@ def captureImage(request):
         image = request.POST.get('image')
         # imageData = dataUrlPattern.match(image).group(2)
         # ImageData = base64.b64decode(imageData)
-        # print(ImageData)
+        print(image)
     return HttpResponse("DONE")
