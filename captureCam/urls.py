@@ -20,6 +20,5 @@ import main.views as views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home,name="home"),
-    path('file', views.file1,name="file"),
     path('captureImage', views.captureImage,name="captureImage"),
 ]
