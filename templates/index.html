@@ -20,13 +20,7 @@
 <Br>
     <center>
         <button id="capture" class="captureBtn">Capture</button>
-        <Br><br>    
-        <form method="POST" action="{% url 'captureImage' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="image" value="" id="file" />
-            <!-- <input type="file" id="file" name="input" value="" class="input"/> -->
-            <input type="submit" value="UPLOAD" class="inputBtn" />
-        </form>
+        <Br>
         <!-- <input type="file" /> -->
     </center>
 <Br>
@@ -39,8 +33,15 @@
             <canvas id="canvas" width=320 height=240></canvas>
         </div>
         <Br><br>
-        <button class="captureBtn" id="saveCapturedImage">Submit</button>
+        <a class="captureBtn" id="saveCapturedImage" download="image.png">Save</a>
 
+            
+        <form method="POST" action="{% url 'captureImage' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="image" value="" id="file" />
+            <!-- <input type="file" id="file" name="input" value="" class="input"/> -->
+            <input type="submit" value="UPLOAD" id="upload" class="inputBtn none" />
+        </form>
     </div>
 
 
@@ -56,8 +57,18 @@
         document.getElementById("saveCapturedImage").addEventListener(
             "click",
             ()=>{
-                var data = document.getElementById("canvas").toDataURL("image/jpeg");
+                document.getElementById("saveCapturedImage").download="image.png";
+                var data = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+                document.getElementById("saveCapturedImage").href=data;
                 document.getElementById("file").value = data;
+                setTimeout(
+                    () => {
+                        document.getElementById("upload").classList.remove("none");
+                    },
+                    500
+                );
+                document.getElementById("saveCapturedImage").classList.add("none");
+
             }
         );
 
