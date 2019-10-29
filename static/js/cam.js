@@ -14,6 +14,8 @@ captureButton.addEventListener('click', () => {
   // Draw the video frame to the canvas.
     overlay.classList.remove("none");
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
+    document.getElementById("saveCapturedImage").classList.remove("none");
+    document.getElementById("upload").classList.add("none");
 });
 
 // Attach the video stream to the video element and autoplay.
