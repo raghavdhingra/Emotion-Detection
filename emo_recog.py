@@ -55,7 +55,4 @@ for face in faces:
     i =+ 1
     cv2.putText(image, label, label_position , cv2.FONT_HERSHEY_SIMPLEX,1, (0,255,0), 2)
     
-cv2.imshow("Emotion Detector", image)
-cv2.waitKey(0)
-
-cv2.destroyAllWindows()
+cv2.imwrite("result.jpeg", image)
