@@ -3,6 +3,7 @@ from django.http import HttpResponse,JsonResponse
 import json
 import re
 import base64
+from main.emo_capt import face_detector
 
 dataUrlPattern = re.compile('data:image/(png|jpeg);base64,(.*)$')
 
@@ -23,5 +24,11 @@ def captureImage(request):
         image = request.POST.get('image')
         # imageData = dataUrlPattern.match(image).group(2)
         # ImageData = base64.b64decode(imageData)
-        print(image)
-    return HttpResponse("DONE")
+        # print(image)
+    
+    context = {
+        "title":"HOME",
+        "image":image
+    }
+
+    return render(request,'result.html',context)
