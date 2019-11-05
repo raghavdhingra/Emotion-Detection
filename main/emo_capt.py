@@ -35,27 +35,27 @@ def face_detector(img):
         rects.append((x,w,y,h))
     return rects, allfaces, img
 
-img = cv2.imread("test1.jpeg")
-rects, faces, image = face_detector(img)
+# img = cv2.imread("test1.jpeg")
+# rects, faces, image = face_detector(img)
 
-i = 0
-for face in faces:
-    print(face.shape)
-    print(face)
-    roi = face.astype("float") / 255.0
-    roi = img_to_array(roi)
-    roi = np.expand_dims(roi, axis=0)
+# i = 0
+# for face in faces:
+#     print(face.shape)
+#     print(face)
+#     roi = face.astype("float") / 255.0
+#     roi = img_to_array(roi)
+#     roi = np.expand_dims(roi, axis=0)
 
-    # make a prediction on the ROI, then lookup the class
-    preds = classifier.predict(roi)[0]
-    label = class_labels[preds.argmax()]   
+#     # make a prediction on the ROI, then lookup the class
+#     preds = classifier.predict(roi)[0]
+#     label = class_labels[preds.argmax()]   
 
-    #Overlay our detected emotion on our pic
-    label_position = (rects[i][0] + int((rects[i][1]/2)), abs(rects[i][2] - 10))
-    i =+ 1
-    cv2.putText(image, label, label_position , cv2.FONT_HERSHEY_SIMPLEX,1, (0,255,0), 2)
+#     #Overlay our detected emotion on our pic
+#     label_position = (rects[i][0] + int((rects[i][1]/2)), abs(rects[i][2] - 10))
+#     i =+ 1
+#     cv2.putText(image, label, label_position , cv2.FONT_HERSHEY_SIMPLEX,1, (0,255,0), 2)
     
-cv2.imshow("Emotion Detector", image)
-cv2.waitKey(0)
+# cv2.imshow("Emotion Detector", image)
+# cv2.waitKey(0)
 
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()

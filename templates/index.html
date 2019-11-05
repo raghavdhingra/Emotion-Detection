@@ -38,8 +38,8 @@
             
         <form method="POST" action="{% url 'captureImage' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="image" value="" id="file" />
-            <input type="file" id="file" name="input" value="" class="input"/>
+            <!-- <input type="hidden" name="image" value="" id="file" /> -->
+            <input type="file" id="file11" name="image" value="" class="input none"/>
             <input type="submit" value="UPLOAD" id="upload" class="inputBtn none" />
         </form>
     </div>
@@ -60,10 +60,11 @@
                 document.getElementById("saveCapturedImage").download="test1.jpeg";
                 var data = document.getElementById("canvas").toDataURL("image/jpeg").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
                 document.getElementById("saveCapturedImage").href=data;
-                document.getElementById("file").value = data;
+                // document.getElementById("file").value = data;
                 setTimeout(
                     () => {
                         document.getElementById("upload").classList.remove("none");
+                        document.getElementById("file11").classList.remove("none");
                     },
                     500
                 );
