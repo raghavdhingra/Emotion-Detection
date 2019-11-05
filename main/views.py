@@ -56,15 +56,15 @@ def captureImage(request):
             label_position = (rects[i][0] + int((rects[i][1]/2)), abs(rects[i][2] - 10))
             i =+ 1
             cv2.putText(image, label, label_position , cv2.FONT_HERSHEY_SIMPLEX,1, (0,255,0), 2)            
-        cv2.imshow("Emotion Detector", image)
+        # cv2.imshow("Emotion Detector", image)
         cv2.imwrite(os.path.join('static', 'result.jpg'),image)
         # print(image)
         context = {
             "title":"HOME",
             # "image":"/result.jpg",
         }
-        cv2.waitKey(0)
+        # cv2.waitKey(0)
 
-        cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
 
     return render(request,'result.html',context)
