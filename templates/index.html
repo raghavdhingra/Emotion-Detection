@@ -39,7 +39,7 @@
         <form method="POST" action="{% url 'captureImage' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- <input type="hidden" name="image" value="" id="file" /> -->
-            <input type="file" id="file11" name="image" value="" class="input none"/>
+            <input type="file" id="file11" name="image" value="" class="input none" required/>
             <input type="submit" value="UPLOAD" id="upload" class="inputBtn none" />
         </form>
     </div>

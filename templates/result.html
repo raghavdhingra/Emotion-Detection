@@ -1,18 +1,40 @@
 <!DOCTYPE html>
+<!-- {% load staticfiles %} -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .display{
+            box-shadow: 0 0 7px 1px #999;
+            margin: 2em auto;
+            padding: 3em;
+            width: max-content;
+            border-radius: 5px;
+            color: #1a73e8;
+        }
+        img{
+            border: 0.5em dashed #1a73e8;
+            padding: 0.5em;
+        }
+    </style>
+
 </head>
 <body>
-    Here is the image saved on the Local PC:
-    <img src={{image}} />
-    <Br/>
-    <h2 style="font-family: Arial, Helvetica, sans-serif">
-        Please restart the server to view the result.
-    </h2>
+    <div class="display">
+        <H1 style="text-align: center;">Image Processed - </H1><Br/>
+        <!-- <img src="../static/result.jpg" /> -->
+        <img src="{% static 'result.jpg' %}" />
+    </div>
+
 
 </body>
 </html>
