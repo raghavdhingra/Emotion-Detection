@@ -1,0 +1,1 @@
+web: gunicorn captureCam.wsgi --log-file -

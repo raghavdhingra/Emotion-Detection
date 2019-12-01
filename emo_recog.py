@@ -4,7 +4,6 @@ classifier = load_model('model.hdf5')
 dictclass = {'Angry': 0, 'Sad': 5, 'Neutral': 4, 'Disgust': 1, 'Surprise': 6, 'Fear': 2, 'Happy': 3}
 class_labels = {v: k for k, v in dictclass.items()}
 
-
 from keras.models import load_model
 from keras.preprocessing import image
 import numpy as np
