@@ -19,7 +19,7 @@ django-ckeditor==5.5.0
 django-heroku==0.3.1
 django-js-asset==1.2.2
 django-rest-framework==0.1.0
-djangorestframework==3.10.1
+djangorestframework==3.11.2
 dlib==19.18.0
 entrypoints==0.3
 face-recognition==1.2.3
